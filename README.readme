@@ -1,0 +1,88 @@
+Do at least ONE of the following tasks: refactor is mandatory. Write tests is optional, will be good bonus to see it.
+Upload your results to a Github repo, for easier sharing and reviewing.
+
+Thank you and good luck!
+
+
+
+Code to refactor
+=================
+1) app/Http/Controllers/BookingController.php
+2) app/Repository/BookingRepository.php
+
+Code to write tests (optional)
+=====================
+3) App/Helpers/TeHelper.php method willExpireAt
+4) App/Repository/UserRepository.php, method createOrUpdate
+
+
+----------------------------
+
+What I expect in your repo:
+
+X. A readme with:   Your thoughts about the code. What makes it amazing code. Or what makes it ok code. Or what makes it terrible code. How would you have done it. Thoughts on formatting, structure, logic.. The more details that you can provide about the code (what's terrible about it or/and what is good about it) the easier for us to assess your coding style, mentality etc
+
+And
+
+Y.  Refactor it if you feel it needs refactoring. The more love you put into it. The easier for us to asses your thoughts, code principles etc
+
+
+IMPORTANT: Make two commits. First commit with original code. Second with your refactor so we can easily trace changes.
+
+
+NB: you do not need to set up the code on local and make the web app run. It will not run as its not a complete web app. This is purely to assess you thoughts about code, formatting, logic etc
+
+
+===== So expected output is a GitHub link with either =====
+
+1. Readme described above (point X above) + refactored code
+OR
+2. Readme described above (point X above) + refactored core + a unit test of the code that we have sent
+
+Thank you!
+
+
+# What's Good:
+1) Dependency Injection: Dependency injection is utilized in the constructor, injecting the BookingRepository dependency, promoting loose coupling and facilitating unit testing.
+
+2) The controller methods (index, show, store, update, etc.) follow RESTful conventions, enhancing readability and maintainability.
+
+3) Response Handling: Responses are returned using Laravel's response() helper function, providing a consistent way to format and send responses.
+
+4) Error Handling: Some error handling is present, such as checking for missing parameters in the distanceFeed method and handling exceptions in the resendSMSNotifications method.
+
+5) Clear Method Names: Method names are descriptive and follow a consistent naming convention, making it easier to understand their purpose.
+
+What's Okay:
+1) Logic in Controller: The controller contains some business logic, such as data manipulation before passing it to the repository methods. While it's okay for simple operations, complex logic should ideally be moved to service classes.
+
+2) Variable Naming: Variable names are mostly descriptive, but some could be more explicit to enhance readability ($data, $response, etc.).
+
+
+# What Could Be Improved:
+1) Fat Controller: The controller is handling too many responsibilities, violating the Single Responsibility Principle (SRP). It should delegate complex logic to service classes to maintain a clean and manageable codebase.
+
+2) Request Validation: Input validation is crucial for security and data integrity. Implementing request validation using Laravel's form requests or inline validation would improve the robustness of the application.
+
+3) Exception Handling: Error handling is limited and inconsistent across methods. Implementing structured exception handling, such as using Laravel's exception handling features or custom error handlers, would improve error reporting and maintainability.
+
+4) Direct Access to Request Data: Directly accessing request data like $request->__authenticatedUser violates encapsulation and makes the code tightly coupled to Laravel's request implementation. Using middleware or service classes to extract and validate request data would enhance modularity and testability.
+
+5) Magic Numbers/Strings: Some parts of the code contain magic numbers or strings (env('ADMIN_ROLE_ID'), 'adminemail', etc.), which could be replaced with constants or configuration files for better maintainability.
+
+6) Data Manipulation: Data manipulation in the distanceFeed method is convoluted and could be simplified. Extracting data manipulation logic into separate methods or classes would enhance readability and maintainability.
+
+# How I Would Approach It:
+1) Separation of Concerns: I would refactor the controller to adhere to the SRP by moving business logic to service classes and request validation to form requests.
+
+2) Error Handling: Implement structured exception handling and consistent error reporting across the application.
+
+3) Dependency Injection: Utilize constructor injection for dependencies and avoid accessing request data directly in the controller.
+
+4) Request Validation: Implement request validation using Laravel's form requests to ensure data integrity and security.
+
+5) Code Organization: Split large methods into smaller, focused ones and extract reusable logic into separate methods or classes.
+
+7) Configuration Management: Replace magic numbers/strings with constants or configuration files for better maintainability.
+
+
